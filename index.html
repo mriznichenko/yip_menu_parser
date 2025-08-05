@@ -1,11 +1,32 @@
-!<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea Copy</title>
 </head>
 <body>
-    <textarea rows="10" cols="30" placeholder="Введіть текст тут..."></textarea>
+
+  <textarea oninput="handleChange(this.value)" rows="10" cols="30" placeholder="Введіть текст тут..."></textarea>
+
+  <br><br>
+
+  <input type="text" id="copyField" readonly style="width: 300px;">
+  <button onclick="copyText()">Копіювати</button>
+
+  <script>
+    function handleChange(text) {
+      document.getElementById('copyField').value = text;
+    }
+
+    function copyText() {
+      const field = document.getElementById('copyField');
+      field.select();
+      field.setSelectionRange(0, 99999); // для мобільних
+      document.execCommand('copy');
+      alert("Скопійовано!");
+    }
+  </script>
+
 </body>
 </html>
